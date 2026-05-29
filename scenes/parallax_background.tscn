@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://diu7rxt6lfa6q"]
+
+[ext_resource type="Texture2D" uid="uid://ce860k3te5rvw" path="res://assets/assets/img/background/plx-1.png" id="1_bpahb"]
+[ext_resource type="Texture2D" uid="uid://ple67608wfe" path="res://assets/assets/img/background/plx-2.png" id="2_qs7dk"]
+[ext_resource type="Texture2D" uid="uid://bqm1nd1tacjvd" path="res://assets/assets/img/background/plx-3.png" id="3_2oy3k"]
+[ext_resource type="Texture2D" uid="uid://c683lkq5wyi8q" path="res://assets/assets/img/background/plx-4.png" id="4_jy56r"]
+[ext_resource type="Texture2D" uid="uid://dba0ubfw148q3" path="res://assets/assets/img/background/plx-5.png" id="5_11q5a"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" unique_id=1071232072]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1295792710]
+texture = ExtResource("1_bpahb")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="." unique_id=1124151246]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer" unique_id=955972026]
+texture = ExtResource("2_qs7dk")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="." unique_id=917286824]
+motion_scale = Vector2(0.7, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2" unique_id=1045878996]
+texture = ExtResource("3_2oy3k")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="." unique_id=512425799]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3" unique_id=1974008495]
+texture = ExtResource("4_jy56r")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="." unique_id=888252433]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4" unique_id=1539627008]
+texture = ExtResource("5_11q5a")
+centered = false

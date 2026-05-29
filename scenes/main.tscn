@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djxq1hs7ebbjd"]
+
+[ext_resource type="PackedScene" uid="uid://diu7rxt6lfa6q" path="res://scenes/parallax_background.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://tqspfgooxsmu" path="res://scenes/ground.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cng8bnjmecpyn" path="res://scenes/dino.tscn" id="3_tbgi4"]
+
+[node name="main" type="Node" unique_id=1358619478]
+
+[node name="ParallaxBackground" parent="." unique_id=1071232072 instance=ExtResource("1_sugp2")]
+
+[node name="ground" parent="." unique_id=1638182334 instance=ExtResource("2_jyhfs")]
+
+[node name="Dino" parent="." unique_id=1010183079 instance=ExtResource("3_tbgi4")]
+position = Vector2(176, 488)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2113067976]
+position = Vector2(576, 324)
