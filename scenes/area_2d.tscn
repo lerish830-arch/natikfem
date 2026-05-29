@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cwrmuahua87u0" path="res://assets/assets/img/obstacles/rock.png" id="1_svk5y"]
 
-[node name="Area2D" type="Area2D" unique_id=112688618]
+[node name="rocks" type="Area2D" unique_id=112688618]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1061473968]
 texture_filter = 1
