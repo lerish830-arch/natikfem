@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://djxq1hs7ebbjd"]
 
+[ext_resource type="Script" uid="uid://dyq6jrtm13yth" path="res://scenes/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://diu7rxt6lfa6q" path="res://scenes/parallax_background.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://tqspfgooxsmu" path="res://scenes/ground.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cng8bnjmecpyn" path="res://scenes/dino.tscn" id="3_tbgi4"]
 
 [node name="main" type="Node" unique_id=1358619478]
+script = ExtResource("1_jyhfs")
 
 [node name="ParallaxBackground" parent="." unique_id=1071232072 instance=ExtResource("1_sugp2")]
 
