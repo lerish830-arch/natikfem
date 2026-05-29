@@ -5,6 +5,7 @@ const DINO_START_POS := Vector2i(150, 485)
 const CAM_START_POS := Vector2i(576, 324)
 
 var score : int
+const SCORE_MODIFIER : int  = 12
 var speed : float
 
 const START_SPEED : float = 10.0
@@ -31,7 +32,10 @@ func _process(delta: float) -> void:
 	$Camera2D.position.x += speed
 	
 	score += speed
-	print(score)
+	show_score()
 	
 	if $Camera2D.position.x - $ground.position.x > screen_size.x * 1.5:
 		$ground.position.x += screen_size.x
+		
+func show_score():
+	$HUD.get_node("Scorelabel").text = "SCORE: " + str(score/SCORE_MODIFIER)

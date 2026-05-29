@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://diu7rxt6lfa6q" path="res://scenes/parallax_background.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://tqspfgooxsmu" path="res://scenes/ground.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cng8bnjmecpyn" path="res://scenes/dino.tscn" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dt15jdqt7wn7o" path="res://scenes/hud.tscn" id="5_tbgi4"]
 
 [node name="main" type="Node" unique_id=1358619478]
 script = ExtResource("1_jyhfs")
@@ -17,3 +18,5 @@ position = Vector2(176, 488)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2113067976]
 position = Vector2(576, 324)
+
+[node name="HUD" parent="." unique_id=1976604170 instance=ExtResource("5_tbgi4")]
