@@ -1,26 +1,26 @@
 extends CharacterBody2D
-
 const GRAVITY : int = 4200
 const JUMP_SPEED : int = -1800
 
 func _physics_process(delta):
-
 	velocity.y += GRAVITY * delta
 
 	if is_on_floor():
-		$RunCol.disabled = false
-
-		if Input.is_action_just_pressed("ui_accept"):
-			velocity.y = JUMP_SPEED
-			#$jumpSound.play()
-
-		elif Input.is_action_pressed("ui_down"):
-			$AnimatedSprite2D.play("Duck")
-			$RunCol.disabled = true
-
+		if not get_parent().game_running:
+			$AnimatedSprite2D.play("Idle" ) 
 		else:
-			$AnimatedSprite2D.play("Run")
+			$RunCol.disabled = false
 
+			if Input.is_action_just_pressed("ui_accept"):
+				velocity.y = JUMP_SPEED
+				#$JumpSound.play()
+
+			elif Input.is_action_pressed("ui_down"):
+				$AnimatedSprite2D.play("Duck")
+				$RunCol.disabled = true
+
+			else:
+				$AnimatedSprite2D.play("Run")
 	else:
 		$AnimatedSprite2D.play("jump")
 
