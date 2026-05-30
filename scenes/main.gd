@@ -3,11 +3,9 @@ extends Node
 var stump_scene = preload("res://scenes/stump.tscn")
 var rock_scene = preload("res://scenes/rocks.tscn")
 var barrels_scene = preload("res://scenes/barrels.tscn")
-var bird_scene = preload("res://scenes/bird.tscn")
 
 var obstacle_types := [stump_scene, rock_scene, barrels_scene]
 var obstacles : Array
-var bird_heights = [200, 390]
 
 # game variables
 const DINO_START_POS := Vector2i(150, 485)
@@ -47,7 +45,7 @@ func new_game():
 	$ground.position = Vector2i(0, 0)
 	$HUD.get_node("startlabel").show()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if game_running:
 		speed = START_SPEED + score / SPEED_MODIFIER
 
