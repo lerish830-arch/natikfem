@@ -13,6 +13,9 @@ var bird_heights = [200, 390]
 const DINO_START_POS := Vector2i(150, 485)
 const CAM_START_POS := Vector2i(576, 324)
 
+var difficulty
+const MAX_DIFFICULTY : int = 2
+
 var score : int
 const SCORE_MODIFIER : int = 12
 var speed : float
@@ -36,6 +39,7 @@ func new_game():
 	show_score()
 	speed = START_SPEED
 	game_running = false
+	difficulty = 0
 
 	$Dino.position = DINO_START_POS
 	$Dino.velocity = Vector2i(0, 0)
@@ -50,6 +54,7 @@ func _process(delta: float) -> void:
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
 
+		adjust_difficulty()
 		generate_obs()
 
 		$Dino.position.x += speed
@@ -69,7 +74,7 @@ func _process(delta: float) -> void:
 func generate_obs():
 	if obstacles.is_empty() or last_obs.position.x < score + randi_range(300, 500):
 		var obs_type = obstacle_types[randi() % obstacle_types.size()]
-		var max_obs = 3
+		var max_obs = difficulty + 1
 
 		for i in range(randi() % max_obs + 1):
 			var obs = obs_type.instantiate()
@@ -88,3 +93,9 @@ func add_obs(obs, x, y):
 
 func show_score():
 	$HUD.get_node("Scorelabel").text = "SCORE: " + str(score / SCORE_MODIFIER)
+
+func adjust_difficulty():
+	difficulty = int(score / SPEED_MODIFIER)
+
+	if difficulty > MAX_DIFFICULTY:
+		difficulty = MAX_DIFFICULTY
