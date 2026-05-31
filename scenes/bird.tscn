@@ -46,6 +46,7 @@ radius = 8.0
 height = 32.0
 
 [node name="bird" type="Area2D" unique_id=1388843272]
+scale = Vector2(3, 3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1199256961]
 sprite_frames = SubResource("SpriteFrames_bdh3x")
