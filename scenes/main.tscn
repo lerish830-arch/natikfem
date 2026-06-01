@@ -23,3 +23,16 @@ position = Vector2(576, 324)
 [node name="HUD" parent="." unique_id=1976604170 instance=ExtResource("5_tbgi4")]
 
 [node name="CanvasLayer" parent="." unique_id=869097292 instance=ExtResource("6_tefeu")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=220736585]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1292265494]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
