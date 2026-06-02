@@ -1,10 +1,9 @@
-
-
 extends Node
 
 var stump_scene = preload("res://scenes/stump.tscn")
 var rock_scene = preload("res://scenes/rocks.tscn")
 var barrels_scene = preload("res://scenes/barrels.tscn")
+var shield_scene = preload("res://scenes/shield.tscn")
 
 var obstacle_types := [stump_scene, rock_scene, barrels_scene]
 var obstacles : Array
@@ -31,6 +30,10 @@ var game_running : bool
 var game_over_state : bool = false
 var last_obs
 
+var cycle_timer := 0.0
+var is_night := false
+var has_shield := false
+
 func _ready() -> void:
 	screen_size = get_window().size
 	ground_height = $ground.get_node("Sprite2D").texture.get_height()
@@ -45,6 +48,11 @@ func new_game():
 	game_over_state = false
 	difficulty = 0
 
+	cycle_timer = 0.0
+	is_night = false
+	has_shield = false
+	$CanvasLayer2/ColorRect.color.a = 0.0
+
 	$Dino.position = DINO_START_POS
 	$Dino.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
@@ -57,6 +65,18 @@ func new_game():
 
 func _process(_delta: float) -> void:
 	if game_running:
+		cycle_timer += _delta
+
+		if cycle_timer >= 15:
+			cycle_timer = 0
+
+			if is_night:
+				$CanvasLayer2/ColorRect.color.a = 0.0
+				is_night = false
+			else:
+				$CanvasLayer2/ColorRect.color.a = 120.0 / 255.0
+				is_night = true
+
 		speed = START_SPEED + score / SPEED_MODIFIER
 
 		if speed > MAX_SPEED:
@@ -64,6 +84,7 @@ func _process(_delta: float) -> void:
 
 		adjust_difficulty()
 		generate_obs()
+		generate_shield()
 
 		$Dino.position.x += speed
 		$Camera2D.position.x += speed
@@ -99,6 +120,16 @@ func generate_obs():
 			last_obs = obs
 			add_obs(obs, obs_x, obs_y)
 
+func generate_shield():
+	if !has_shield and randi() % 800 == 0:
+		var shield = shield_scene.instantiate()
+		shield.position = Vector2(
+			$Camera2D.position.x + screen_size.x,
+			450
+		)
+		add_child(shield)
+		obstacles.append(shield)
+
 func add_obs(obs, x, y):
 	obs.position = Vector2i(x, y)
 	obs.body_entered.connect(hit_obs)
@@ -111,7 +142,17 @@ func remove_obs(obs):
 
 func hit_obs(body):
 	if body.name == "Dino":
+		if has_shield:
+			has_shield = false
+			print("Shield used!")
+			return
 		game_over()
+
+func collect_shield(shield):
+	has_shield = true
+	print("Shield collected!")
+	obstacles.erase(shield)
+	shield.queue_free()
 
 func show_score():
 	$HUD.get_node("Scorelabel").text = "SCORE: " + str(int(score / SCORE_MODIFIER))
@@ -119,12 +160,10 @@ func show_score():
 func check_high_score():
 	if score > high_score:
 		high_score = score
-
 	$HUD.get_node("HighScore").text = "HIGH SCORE: " + str(int(high_score / SCORE_MODIFIER))
 
 func adjust_difficulty():
 	difficulty = int(score / float(SPEED_MODIFIER))
-
 	if difficulty > MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
 
@@ -132,8 +171,7 @@ func game_over():
 	game_running = false
 	game_over_state = true
 	speed = 0
-
 	check_high_score()
-
 	print("Game Over")
 	$CanvasLayer.show()
+	

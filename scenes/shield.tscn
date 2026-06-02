@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d3e8uf2h82vj5"]
+
+[ext_resource type="Script" uid="uid://do5pgx8vlt0rx" path="res://scenes/shield.gd" id="1_ohv3a"]
+[ext_resource type="Texture2D" uid="uid://blsay358far1u" path="res://assets/assets/Shield Pack/Shield 1/64 x 64/S1 64 X 64.png" id="1_vtru8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohv3a"]
+radius = 26.925823
+
+[node name="shield" type="Area2D" unique_id=1827208028]
+script = ExtResource("1_ohv3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1573360127]
+texture = ExtResource("1_vtru8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=633203793]
+shape = SubResource("CircleShape2D_ohv3a")
