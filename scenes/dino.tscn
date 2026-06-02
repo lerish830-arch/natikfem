@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ckxwfam2nhh0d" path="res://assets/assets/img/mort.png" id="1_4s6ie"]
 [ext_resource type="Script" uid="uid://cf0djgbcuqlns" path="res://scenes/dino.gd" id="1_ybb2o"]
 [ext_resource type="AudioStream" uid="uid://b67a3rdv3bdh4" path="res://assets/assets/sound/jump.wav" id="2_ybb2o"]
+[ext_resource type="Texture2D" uid="uid://blsay358far1u" path="res://assets/assets/Shield Pack/Shield 1/64 x 64/S1 64 X 64.png" id="4_qwydg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwydg"]
 atlas = ExtResource("1_4s6ie")
@@ -188,3 +189,9 @@ shape = SubResource("RectangleShape2D_64ei1")
 [node name="jumpSound" type="AudioStreamPlayer" parent="." unique_id=671165776]
 stream = ExtResource("2_ybb2o")
 volume_db = -25.0
+
+[node name="ShieldSprite" type="Sprite2D" parent="." unique_id=1088108389]
+visible = false
+position = Vector2(4, 1)
+scale = Vector2(0.3203125, 0.296875)
+texture = ExtResource("4_qwydg")

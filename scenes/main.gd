@@ -51,6 +51,7 @@ func new_game():
 	cycle_timer = 0.0
 	is_night = false
 	has_shield = false
+	$Dino/ShieldSprite.hide()
 	$CanvasLayer2/ColorRect.color.a = 0.0
 
 	$Dino.position = DINO_START_POS
@@ -144,12 +145,15 @@ func hit_obs(body):
 	if body.name == "Dino":
 		if has_shield:
 			has_shield = false
+			$Dino/ShieldSprite.hide()
 			print("Shield used!")
 			return
+
 		game_over()
 
 func collect_shield(shield):
 	has_shield = true
+	$Dino/ShieldSprite.show()
 	print("Shield collected!")
 	obstacles.erase(shield)
 	shield.queue_free()
