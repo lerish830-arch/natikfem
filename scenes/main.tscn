@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dyq6jrtm13yth" path="res://scenes/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://diu7rxt6lfa6q" path="res://scenes/parallax_background.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://tqspfgooxsmu" path="res://scenes/ground.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bmro7xebox744" path="res://NightBackground.tscn" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cng8bnjmecpyn" path="res://scenes/dino.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dt15jdqt7wn7o" path="res://scenes/hud.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dvpkk84in4qyx" path="res://canvas_layer.tscn" id="6_tefeu"]
@@ -11,6 +12,9 @@
 script = ExtResource("1_jyhfs")
 
 [node name="ParallaxBackground" parent="." unique_id=1071232072 instance=ExtResource("1_sugp2")]
+
+[node name="NightBackground" parent="." unique_id=1961182778 instance=ExtResource("3_o6xl0")]
+visible = false
 
 [node name="ground" parent="." unique_id=1638182334 instance=ExtResource("2_jyhfs")]
 
@@ -27,11 +31,19 @@ position = Vector2(576, 324)
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=220736585]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1292265494]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=791122845]
+wait_time = 15.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

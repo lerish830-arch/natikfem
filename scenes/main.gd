@@ -8,7 +8,6 @@ var shield_scene = preload("res://scenes/shield.tscn")
 var obstacle_types := [stump_scene, rock_scene, barrels_scene]
 var obstacles : Array
 
-# game variables
 const DINO_START_POS := Vector2i(150, 485)
 const CAM_START_POS := Vector2i(576, 324)
 
@@ -32,6 +31,7 @@ var last_obs
 
 var cycle_timer := 0.0
 var is_night := false
+var is_transitioning := false
 var has_shield := false
 
 func _ready() -> void:
@@ -47,36 +47,29 @@ func new_game():
 	game_running = false
 	game_over_state = false
 	difficulty = 0
-
 	cycle_timer = 0.0
 	is_night = false
+	is_transitioning = false
 	has_shield = false
 	$Dino/ShieldSprite.hide()
 	$CanvasLayer2/ColorRect.color.a = 0.0
-
+	$NightBackground.visible = false
+	$ParallaxBackground.visible = true
 	$Dino.position = DINO_START_POS
 	$Dino.velocity = Vector2i(0, 0)
 	$Camera2D.position = CAM_START_POS
 	$ground.position = Vector2i(0, 0)
-
 	$HUD.get_node("startlabel").show()
 	$HUD.get_node("HighScore").text = "HIGH SCORE: " + str(int(high_score / SCORE_MODIFIER))
-
 	$CanvasLayer.hide()
 
 func _process(_delta: float) -> void:
 	if game_running:
 		cycle_timer += _delta
 
-		if cycle_timer >= 15:
-			cycle_timer = 0
-
-			if is_night:
-				$CanvasLayer2/ColorRect.color.a = 0.0
-				is_night = false
-			else:
-				$CanvasLayer2/ColorRect.color.a = 120.0 / 255.0
-				is_night = true
+		if cycle_timer >= 15.0 and not is_transitioning:
+			cycle_timer = 0.0
+			start_day_night_transition()
 
 		speed = START_SPEED + score / SPEED_MODIFIER
 
@@ -148,7 +141,6 @@ func hit_obs(body):
 			$Dino/ShieldSprite.hide()
 			print("Shield used!")
 			return
-
 		game_over()
 
 func collect_shield(shield):
@@ -158,7 +150,7 @@ func collect_shield(shield):
 	obstacles.erase(shield)
 	shield.queue_free()
 
-func show_score():
+func show_score():\
 	$HUD.get_node("Scorelabel").text = "SCORE: " + str(int(score / SCORE_MODIFIER))
 
 func check_high_score():
@@ -178,4 +170,28 @@ func game_over():
 	check_high_score()
 	print("Game Over")
 	$CanvasLayer.show()
+
+func start_day_night_transition():
+	is_transitioning = true
+	var overlay = $CanvasLayer2/ColorRect
+	var tween = create_tween()
+
+	tween.tween_property(overlay, "color:a", 1.0, 1.0)
+
+	tween.tween_callback(func():
+		if is_night:
+			$NightBackground.visible = false
+			$ParallaxBackground.visible = true
+			is_night = false
+		else:
+			$NightBackground.visible = true
+			$ParallaxBackground.visible = false
+			is_night = true
+	)
+
+	tween.tween_property(overlay, "color:a", 0.0, 1.0)
+
+	tween.tween_callback(func():
+		is_transitioning = false
+	)
 	
