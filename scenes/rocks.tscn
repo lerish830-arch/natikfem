@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cwrmuahua87u0" path="res://assets/assets/img/obstacles/rock.png" id="1_ooke6"]
 
 [node name="rocks" type="Area2D" unique_id=952578832]
+scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452638276]
 texture_filter = 1

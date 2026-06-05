@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://uuyvxyk24w1x" path="res://assets/assets/img/obstacles/stump.png" id="1_c6xkf"]
 
 [node name="stump" type="Area2D" unique_id=1647665387]
+scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=861460004]
 texture_filter = 1

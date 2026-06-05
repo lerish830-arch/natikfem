@@ -66,33 +66,24 @@ func new_game():
 func _process(_delta: float) -> void:
 	if game_running:
 		cycle_timer += _delta
-
 		if cycle_timer >= 15.0 and not is_transitioning:
 			cycle_timer = 0.0
 			start_day_night_transition()
-
 		speed = START_SPEED + score / SPEED_MODIFIER
-
 		if speed > MAX_SPEED:
 			speed = MAX_SPEED
-
 		adjust_difficulty()
 		generate_obs()
 		generate_shield()
-
 		$Dino.position.x += speed
 		$Camera2D.position.x += speed
-
 		score += speed
 		show_score()
-
 		if $Camera2D.position.x - $ground.position.x > screen_size.x * 1.5:
 			$ground.position.x += screen_size.x
-
 		for obs in obstacles:
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
-
 	elif not game_over_state:
 		if Input.is_action_pressed("ui_accept"):
 			game_running = true
@@ -102,15 +93,12 @@ func generate_obs():
 	if obstacles.is_empty() or last_obs.position.x < score + randi_range(300, 500):
 		var obs_type = obstacle_types[randi() % obstacle_types.size()]
 		var max_obs = difficulty + 1
-
 		for i in range(randi() % max_obs + 1):
 			var obs = obs_type.instantiate()
 			var obs_height = obs.get_node("Sprite2D").texture.get_height()
 			var obs_scale = obs.get_node("Sprite2D").scale
-
 			var obs_x := int(screen_size.x + score + 100 + (i * 100))
 			var obs_y := int(screen_size.y - ground_height - (obs_height * obs_scale.y / 2.0) + 5)
-
 			last_obs = obs
 			add_obs(obs, obs_x, obs_y)
 
@@ -150,7 +138,7 @@ func collect_shield(shield):
 	obstacles.erase(shield)
 	shield.queue_free()
 
-func show_score():\
+func show_score():
 	$HUD.get_node("Scorelabel").text = "SCORE: " + str(int(score / SCORE_MODIFIER))
 
 func check_high_score():
@@ -175,9 +163,7 @@ func start_day_night_transition():
 	is_transitioning = true
 	var overlay = $CanvasLayer2/ColorRect
 	var tween = create_tween()
-
 	tween.tween_property(overlay, "color:a", 1.0, 1.0)
-
 	tween.tween_callback(func():
 		if is_night:
 			$NightBackground.visible = false
@@ -188,9 +174,7 @@ func start_day_night_transition():
 			$ParallaxBackground.visible = false
 			is_night = true
 	)
-
 	tween.tween_property(overlay, "color:a", 0.0, 1.0)
-
 	tween.tween_callback(func():
 		is_transitioning = false
 	)
