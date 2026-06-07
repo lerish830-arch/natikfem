@@ -1,5 +1,5 @@
 Naitikfem - dino game
-tutorial used = https://www.youtube.com/watch?v=nKBhz6oJYsc&t=2650s
+tutorial used = https://www.youtube.com/watch?v=nKBhz6oJYsc&t=2650s (about 50 mins long)
 as im a begginer i referred to a tutorial for the bade of my game and so that i could undertsand how to make it work and then add my own changes to it the tutorial covers upto the basic dino game similar to the one in chrome but my dino game has its own features
 
 
@@ -15,7 +15,9 @@ when u start the game press space bar
 jump = spacebar
 duck= = right arrow key
 shoot bullets = left click
-
+break obstacle = shoot 6 bullets at one 
+enemy = touch the enemy or shoot it 
+bullets = 30 after the score of 1000 it resets therefore every score of 1000 u get 30 bullets to use
 goal of the game : keep improving and beat ur high score every time and dont give up until uve reached ur goals 
 
 tech stack: Godot 4 
