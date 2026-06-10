@@ -29,6 +29,7 @@ CHNGES IVE MADE = background switch with fade every 15 seconds
                   shield which gives u one extra life
                   enemies and bullets 
                   diffrent assets(background and obstacles)
+                  boss fight at score 3000
 
 
 
