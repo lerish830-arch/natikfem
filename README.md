@@ -1,7 +1,7 @@
 Naitikfem - dino game
 tutorial used = https://www.youtube.com/watch?v=nKBhz6oJYsc&t=2650s (about 50 mins long)
 as im a begginer i referred to a tutorial for the bade of my game and so that i could undertsand how to make it work and then add my own changes to it the tutorial covers upto the basic dino game similar to the one in chrome but my dino game has its own features
-
+NOTE - DETACHHEAD HAPPENED I COUDNT SOLVE IT I REQUEST YOU TO OVERLOOK THIS MISTAKE THOUGH IM NOT FULLY SURE IF THERE IS ANY WAY TOO FIX IT OR NOT SORRY FOR THE INCONVIENCE REGARDS
 
 WHAT IT DOES = u have a dino in ur scren which acts as your player the dino keeps on running and never stops until u hit an obstacle make sure u dodge all the obstacles and keep progresssing in the game if u want to survive longer i woould recoomend u to collect the shields as they give u one extra life be careful after every 15 seconds theres a background switch which could confuse u and distract u causing u to lose
 
