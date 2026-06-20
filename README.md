@@ -26,6 +26,7 @@ tech stack: Godot 4
 not much for a techstack but thats all i needed for this project
 
 CHNGES IVE MADE = background switch with fade every 15 seconds
+ai usage - ive written down everything myself but in the end some major issue happened regarding the pacing of my game and i used ai to fix that 
                   shield which gives u one extra life
                   enemies and bullets 
                   diffrent assets(background and obstacles)
